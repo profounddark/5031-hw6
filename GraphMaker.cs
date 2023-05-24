@@ -4,17 +4,33 @@ using System.IO;
 
 class GraphMaker
 {
-    const string SourceFolder = "./files/";
-    const string DestinationFolder = "./files/";
+    const string DestinationFolder = "./files-test/";
 
-    public static void WriteFile(string dotData, string filename = "output.dot")
+    public static bool WriteFile(string dotData, string filename = "output.dot")
     {
+
+        bool success = true;
+
         string finalFilename = DestinationFolder + filename;
 
-        using (StreamWriter outputFile = new StreamWriter(finalFilename))
+        try
         {
-            outputFile.Write(dotData);
+            using (StreamWriter outputFile = new StreamWriter(finalFilename))
+            {
+                outputFile.Write(dotData);
+            }
         }
+        catch (IOException ex)
+        {
+            Console.WriteLine("There has been an IOException in the attempt");
+            Console.WriteLine("to write your DOT file. More information is available");
+            Console.WriteLine("in this entirely unhelpful exception message:");
+            Console.WriteLine(ex);
+            success = false;
+        }
+
+        return success;
+
     }
 
 
@@ -29,7 +45,6 @@ class GraphMaker
 
         Graph myGraph = new Graph(starterGraph);
 
-        Console.WriteLine(myGraph.DotOutput());
         WriteFile(myGraph.DotOutput());
 
     }

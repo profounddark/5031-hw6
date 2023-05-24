@@ -5,6 +5,7 @@ class Graph
 {
 
     private const int CharacterShiftOffset = 65;
+    private const string IndentSpaces = "   ";
 
 
     // how to store graph structure?
@@ -115,6 +116,7 @@ class Graph
             {
                 if (_graphArray[i, j] == 1)
                 {
+                    outputString.Append(IndentSpaces);
                     outputString.Append(Convert.ToChar(i + CharacterShiftOffset));
                     outputString.Append(" -> ");
                     outputString.Append(Convert.ToChar(j + CharacterShiftOffset));
@@ -139,6 +141,7 @@ class Graph
             {
                 if (_graphArray[i, j] == 1)
                 {
+                    outputString.Append(IndentSpaces);
                     outputString.Append(Convert.ToChar(i + CharacterShiftOffset));
                     outputString.Append(" -- ");
                     outputString.Append(Convert.ToChar(j + CharacterShiftOffset));
