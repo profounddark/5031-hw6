@@ -4,18 +4,22 @@ using System.IO;
 
 class GraphMaker
 {
-    const string DestinationFolder = "./files-test/";
 
+    /// <summary>
+    /// WriteFile writes the outputs the string data containing the
+    /// dot file data into a file with name filename.
+    /// </summary>
+    /// <param name="dotData">string containing dot file data</param>
+    /// <param name="filename">the filename to write</param>
+    /// <returns></returns>
     public static bool WriteFile(string dotData, string filename = "output.dot")
     {
 
         bool success = true;
 
-        string finalFilename = DestinationFolder + filename;
-
         try
         {
-            using (StreamWriter outputFile = new StreamWriter(finalFilename))
+            using (StreamWriter outputFile = new StreamWriter(filename))
             {
                 outputFile.Write(dotData);
             }
