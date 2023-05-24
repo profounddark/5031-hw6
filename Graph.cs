@@ -1,8 +1,6 @@
 using System;
 using System.Text;
 
-const int CharacterShiftOffset = 65;
-
 class Graph
 {
 
