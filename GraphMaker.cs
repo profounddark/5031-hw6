@@ -9,6 +9,8 @@ class GraphMaker
     /// <summary>
     /// ReadGraphFile opens a text file containing an adjacency matrix (composed of 0s
     /// and 1s) and loads it into a Graph object.
+    /// If the text file is incomplete or malformed, this method may have unpredictable
+    /// results.
     /// </summary>
     /// <param name="filename">the file name to open</param>
     /// <returns>a Graph object of the corresponding adjacency matrix</returns>
