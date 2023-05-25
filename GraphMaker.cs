@@ -5,6 +5,7 @@ using System.IO;
 class GraphMaker
 {
 
+
     /// <summary>
     /// WriteFile writes the outputs the string data containing the
     /// dot file data into a file with name filename.
