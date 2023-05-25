@@ -60,6 +60,12 @@ class GraphMaker
                 graphLine = graphFile.ReadLine();
             }
             graphFile.Close();
+
+            if (lineCounter < returnGraph.NodeCount)
+            {
+                Console.WriteLine("Adjacency file contains insufficient number of lines.");
+                Console.WriteLine("Assuming the missing rows of the matrix contain all 0s.");
+            }
         }
         catch (Exception e)
         {
