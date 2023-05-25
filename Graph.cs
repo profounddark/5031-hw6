@@ -119,6 +119,15 @@ class Graph
 
         for (int i = 0; i < _nodeCount; i++)
         {
+            // this block adds the node to the .dot output. This catches the case
+            // of a disconnected node (ensuring it appears).
+            {
+                outputString.Append(IndentSpaces);
+                outputString.Append(Convert.ToChar(i + CharacterShiftOffset));
+                outputString.AppendLine();
+            }
+
+
             for (int j = IsDigraph() ? 0 : i; j < _nodeCount; j++)
             {
                 if (_graphArray[i, j] == 1)

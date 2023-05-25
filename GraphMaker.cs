@@ -42,12 +42,18 @@ class GraphMaker
                     returnGraph = new Graph(thisLine.Length);
                 }
 
+                if (thisLine.Length < returnGraph.NodeCount)
+                {
+                    Console.WriteLine("Adjacency matrix file has too few columns.");
+                    Console.WriteLine("Assuming missing data contain 0s.");
+                }
                 // parse the integers of the line
                 for (int i = 0; i < thisLine.Length; i++)
                 {
                     if (i >= returnGraph.NodeCount)
                     {
-                        throw new Exception("Too many edges in source file!");
+                        Console.WriteLine("Adjacency matrix file has too many columns.");
+                        Console.WriteLine("Ignoring extra columns.");
                     }
 
                     if (Convert.ToInt32(thisLine[i]) == 1)
