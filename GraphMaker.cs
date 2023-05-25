@@ -6,16 +6,25 @@ using System.Text;
 class GraphMaker
 {
 
+    /// <summary>
+    /// ReadGraphFile opens a text file containing an adjacency matrix (composed of 0s
+    /// and 1s) and loads it into a Graph object.
+    /// </summary>
+    /// <param name="filename">the file name to open</param>
+    /// <returns>a Graph object of the corresponding adjacency matrix</returns>
     public static Graph ReadGraphFile(string filename)
     {
         // set up the Graph to return
         Graph returnGraph = new Graph(0);
 
+        // lazy person way to deal with problems!
         try
         {
             int lineCounter = 0;
 
+            // open the file
             StreamReader graphFile = new StreamReader(filename);
+
             // read the first line of the file
 
             string graphLine = graphFile.ReadLine();
@@ -52,6 +61,7 @@ class GraphMaker
         }
         catch (Exception e)
         {
+
             Console.WriteLine("oops! you broke it!");
             Console.WriteLine("Exception: " + e.Message);
             returnGraph = new Graph(0);
@@ -92,14 +102,52 @@ class GraphMaker
 
     }
 
+    /// <summary>
+    /// GetFilename prompts the user for a filename and returns the
+    /// filename entered by the user.
+    /// </summary>
+    /// <returns>string of the filename netered by the user</returns>
+    public static string GetFilename(bool IsInputFile = true)
+    {
+        if (IsInputFile)
+        {
+            Console.WriteLine("Please enter the name of the file (with path) of the ");
+            Console.WriteLine("adjacency matrix text file: ");
+        }
+        else
+        {
+            Console.WriteLine("Please enter the name of the destination file to use.");
+        }
+
+
+        string filename = "";
+
+        while (filename == "")
+        {
+            filename = Console.ReadLine();
+
+            if (filename == "")
+            {
+                Console.WriteLine("Please enter a filename!");
+            }
+        }
+
+        return filename;
+
+    }
+
 
     public static void Main(string[] args)
     {
 
+        string inputFile = GetFilename();
 
-        Graph myGraph = ReadGraphFile("./files/adj3.txt");
 
-        WriteFile(myGraph.DotOutput());
+        Graph myGraph = ReadGraphFile(inputFile);
+
+        string outputFile = GetFilename(false);
+
+        WriteFile(myGraph.DotOutput(), outputFile);
 
     }
 }
