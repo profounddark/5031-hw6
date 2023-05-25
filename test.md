@@ -56,6 +56,20 @@ This is a description of the test cases used in this program.
 1	0	1	0
 ```
 
+## Test Case: Matrix with Excess Rows
+
+`fail-case-4.txt` contains an adjacency matrix in which there is one row too many. The presumption made ind eveloping the program was that the program would continue running, ignoring the excess rows. This tests to ensure the program behaves accordingly.
+
+`fail-case-4.txt`
+
+```
+0	1	0	1
+1	0	1	0
+0	1	0	0
+1	0	1	0
+0	1	0	0
+```
+
 ## Test Case: Correct Non-directional Graphs
 
 `adj1.txt` and `adj2.txt` were provided in the assignment and are used here to test "correct" output for a non-directional graph.
