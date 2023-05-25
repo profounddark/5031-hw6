@@ -105,65 +105,29 @@ class Graph
         return false;
     }
 
-    private string _dotDigraphOutput()
-    {
-        StringBuilder outputString = new StringBuilder();
-
-        outputString.AppendLine("digraph {");
-        for (int i = 0; i < _nodeCount; i++)
-        {
-            for (int j = 0; j < _nodeCount; j++)
-            {
-                if (_graphArray[i, j] == 1)
-                {
-                    outputString.Append(IndentSpaces);
-                    outputString.Append(Convert.ToChar(i + CharacterShiftOffset));
-                    outputString.Append(" -> ");
-                    outputString.Append(Convert.ToChar(j + CharacterShiftOffset));
-                    outputString.AppendLine();
-                }
-            }
-        }
-        outputString.AppendLine("}");
-
-        return outputString.ToString();
-
-    }
-
-    private string _dotGraphOutput()
-    {
-        StringBuilder outputString = new StringBuilder();
-
-        outputString.AppendLine("graph {");
-        for (int i = 0; i < _nodeCount; i++)
-        {
-            for (int j = i; j < _nodeCount; j++)
-            {
-                if (_graphArray[i, j] == 1)
-                {
-                    outputString.Append(IndentSpaces);
-                    outputString.Append(Convert.ToChar(i + CharacterShiftOffset));
-                    outputString.Append(" -- ");
-                    outputString.Append(Convert.ToChar(j + CharacterShiftOffset));
-                    outputString.AppendLine();
-                }
-            }
-        }
-        outputString.AppendLine("}");
-
-        return outputString.ToString();
-
-    }
 
     public string DotOutput()
     {
-        if (IsDigraph())
+        StringBuilder outputString = new StringBuilder();
+
+        outputString.AppendLine(IsDigraph() ? "digraph {" : "graph {");
+
+        for (int i = 0; i < _nodeCount; i++)
         {
-            return _dotDigraphOutput();
+            for (int j = IsDigraph() ? 0 : i; j < _nodeCount; j++)
+            {
+                if (_graphArray[i, j] == 1)
+                {
+                    outputString.Append(IndentSpaces);
+                    outputString.Append(Convert.ToChar(i + CharacterShiftOffset));
+                    outputString.Append(IsDigraph() ? "->" : " -- ");
+                    outputString.Append(Convert.ToChar(j + CharacterShiftOffset));
+                    outputString.AppendLine();
+                }
+            }
         }
-        else
-        {
-            return _dotGraphOutput();
-        }
+        outputString.AppendLine("}");
+
+        return outputString.ToString();
     }
 }
