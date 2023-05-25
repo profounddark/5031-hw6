@@ -1,10 +1,64 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 
 
 class GraphMaker
 {
 
+    public static Graph ReadGraphFile(string filename)
+    {
+        // set up the Graph to return
+        Graph returnGraph = new Graph(0);
+
+        try
+        {
+            int lineCounter = 0;
+
+            StreamReader graphFile = new StreamReader(filename);
+            // read the first line of the file
+
+            string graphLine = graphFile.ReadLine();
+
+            while (graphLine != null)
+            {
+                // split by tabs
+                string[] thisLine = graphLine.Split("\t");
+
+                // I weirdly hate this part
+                if (returnGraph.IsNull())
+                {
+                    returnGraph = new Graph(thisLine.Length);
+                }
+
+                // parse the integers of the line
+                for (int i = 0; i < thisLine.Length; i++)
+                {
+                    if (i >= returnGraph.NodeCount)
+                    {
+                        throw new Exception("Too many edges in source file!");
+                    }
+
+                    if (Convert.ToInt32(thisLine[i]) == 1)
+                    {
+                        returnGraph.AddEdge(lineCounter, i);
+                    }
+                }
+
+                lineCounter++;
+                graphLine = graphFile.ReadLine();
+            }
+            graphFile.Close();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("oops! you broke it!");
+            Console.WriteLine("Exception: " + e.Message);
+            returnGraph = new Graph(0);
+        }
+
+        return returnGraph;
+    }
 
     /// <summary>
     /// WriteFile writes the outputs the string data containing the
@@ -42,13 +96,8 @@ class GraphMaker
     public static void Main(string[] args)
     {
 
-        int[,] starterGraph = {
-            { 0, 1, 1 },
-            { 0, 0, 1 },
-            { 1, 1, 0 }
-            };
 
-        Graph myGraph = new Graph(starterGraph);
+        Graph myGraph = ReadGraphFile("./files/adj3.txt");
 
         WriteFile(myGraph.DotOutput());
 

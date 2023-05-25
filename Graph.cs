@@ -7,16 +7,17 @@ class Graph
     private const int CharacterShiftOffset = 65;
     private const string IndentSpaces = "   ";
 
-
-    // how to store graph structure?
     private int _nodeCount = 0;
 
     /// <summary>
-    /// GraphArray is the array that stores the underlying graph structure.
-    /// 
+    /// _graphArray is the array that stores the underlying graph structure.
     /// </summary> 
     private int[,] _graphArray;
 
+    public int NodeCount
+    {
+        get => _nodeCount;
+    }
 
     /// <summary>
     /// Constructor to create a graph of a certain number of nodes
@@ -105,6 +106,10 @@ class Graph
         return false;
     }
 
+    public bool IsNull()
+    {
+        return (_nodeCount == 0);
+    }
 
     public string DotOutput()
     {
