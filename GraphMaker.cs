@@ -47,6 +47,11 @@ class GraphMaker
                     Console.WriteLine("Adjacency matrix file has too few columns.");
                     Console.WriteLine("Assuming missing data contain 0s.");
                 }
+                if (lineCounter >= returnGraph.NodeCount)
+                {
+                    Console.WriteLine("Adjacency matrix contains too many rows.");
+                    Console.WriteLine("Excess rows will be ignored.");
+                }
                 // parse the integers of the line
                 for (int i = 0; i < thisLine.Length; i++)
                 {
