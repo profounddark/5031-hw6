@@ -24,4 +24,8 @@ This is a description of the test cases used in this program.
 
 ## Test Case: Correct Directional Graph
 
-`digraph-1.txt` and `digraph-2.txt` test the processing of an adjacency matrix representing a directional graph. In addition, `digraph-2.txt` features an adjacency matrix in which one node is disconnected from the rest of the graph. The detached node should still appear in the resulting output.
+`adj3.txt` and `adj4.txt` were provided in the assignment and are used here to test "correct" output for a directional graph.
+
+## Test Case: Graph with Disconnected Node
+
+`disconnect.txt` features an adjacency matrix in which one node is disconnected from the rest of the graph. The detached node should still appear in the resulting output.
